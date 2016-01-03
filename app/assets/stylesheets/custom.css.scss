@@ -3,6 +3,10 @@ $navbar-default-bg: #013ADF;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#CA {
+    color: white;
+}
+
 #ddd {
     color: white;
 }
@@ -91,6 +95,18 @@ $navbar-default-bg: #013ADF;
     list-style: none;
     padding-left: 0px;
 }
+
+.badge{
+    letter-spacing: -1px;
+    background-color: #CEF6F5;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.input_checkbox input {
+    width: auto !important;
+}
+
 footer {
     margin-top: 45px;
     padding-top: 5px;
