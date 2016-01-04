@@ -14,8 +14,7 @@
                 </div>
     </ul>
     <% end %>
-    <h4 class="center descript"><strong>Description:</strong></h4>
-    <hr>
+    <h4 class="descript"><strong>Description:</strong></h4>
     <%= simple_format(@article.description) %>
     <% if @article.categories.any? %>
         <p>Categories: <%= render @article.categories %></p>
