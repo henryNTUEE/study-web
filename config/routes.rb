@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :images
   root 'pages#home'
   get 'friends', to: "users#friends"
   get 'arthour', to: 'pages#arthour'
