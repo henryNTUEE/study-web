@@ -42,6 +42,24 @@ class UsersController < ApplicationController
    def friends
     @friendships = current_user.friends
    end
+   def search
+      @users = User.search(params[:search_param]) 
+      if @users
+         @users = current_user.except_current_user(@users)
+         render 'friends/_lookup'
+      else
+          render status :not_found, nothing: true
+      end
+   end
+   def add_friend
+      @friend = User.find(params[:friend])
+      current_user.friendships.build(friend_id: @friend.id)
+      if current_user.save
+          redirect_to friends_path, notice: "friend successfully added"
+      else
+         redirect_to friends_path, flash[:error] = "Error in adding as friend" 
+      end
+   end
    
    private
    def user_params
