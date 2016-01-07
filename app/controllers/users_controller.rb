@@ -39,6 +39,9 @@ class UsersController < ApplicationController
     flash[:danger] = "User and articles created have been deleted"
     redirect_to users_path
    end
+   def friends
+       
+   end
    
    private
    def user_params

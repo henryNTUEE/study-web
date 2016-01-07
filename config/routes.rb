@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get 'friends', to: "users#friends"
   get 'arthour', to: 'pages#arthour'
   get 'about', to: 'pages#about' 
   get 'signup', to: 'users#new'
