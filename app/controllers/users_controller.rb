@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     redirect_to users_path
    end
    def friends
-       
+    @friendships = current_user.friends
    end
    
    private
