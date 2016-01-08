@@ -46,19 +46,18 @@
         </ul>
       </li>
       </ul>
+      <%= form_tag search_articles_path, remote: true, method: :get, id: 'article-lookup-form',class: "navbar-form navbar-left" do %>
       <form class="navbar-form navbar-left" role="search">
-        <%= form_tag search_articles_path, remote: true, method: :get, id: 'article-lookup-form' do %>
-        <div class="form-group">
+        <div class="form-group" id="article-lookup">
           <%= text_field_tag :search_param,
                 params[:search_param],
                 placeholder: 'article title',
                 autofocus: true,
                 class: 'form-control search-box' %>
-          <% end %>
         </div>
-        
         <%= button_tag(type: :submit, class: 'btn btn-default') do %>
-                <i class='fa fa-search'></i> Search article
+           <i class='fa fa-search'></i> Search article
+        <% end %>
       </form>
       <% end %>
       <ul class="nav navbar-nav navbar-right">

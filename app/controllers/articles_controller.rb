@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
         if @article.update(article_params
         )
             flash[:success] = "Article was successgully updated"
-            redirect_to article_path(@article)
+            render 'articles/showFind'
         else
             render 'new'
         end
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
     end
     
     def search
-      @articles = User.search(params[:search_param]) 
+      @articles = Article.search(params[:search_param]) 
       if @articles
          redirect_to article_path(@articles)
       else
