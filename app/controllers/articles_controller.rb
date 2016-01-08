@@ -42,6 +42,15 @@ class ArticlesController < ApplicationController
        redirect_to articles_path
     end
     
+    def search
+      @articles = User.search(params[:search_param]) 
+      if @articles
+         redirect_to article_path(@articles)
+      else
+          render status :not_found, nothing: true
+      end
+    end
+   
     private
     def set_article
         @article = Article.find(params[:id])
