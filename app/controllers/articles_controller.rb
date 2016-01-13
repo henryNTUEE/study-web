@@ -50,6 +50,17 @@ class ArticlesController < ApplicationController
           render status :not_found, nothing: true
       end
     end
+    def like
+        @article = Article.find(params[:id])
+        like_hold = Like.create(like: params[:like],user: User.last, article: @article)
+        if like_hold.valid?
+            flash[:success] = "Your selection was successful"
+            redirect_to :back
+        else
+            flash[:danger] = "Can only select once"
+            redirect_to :back
+        end
+    end
    
     private
     def set_article

@@ -16,6 +16,14 @@
     <% end %>
     <h4 class="descript"><strong>Description:</strong></h4>
     <%= simple_format(@article.description) %>
+    <div class="pull-right">
+        <%= link_to like_article_path(@article, like: true), method: :post do %>
+            <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= @article.thumbs_up_total %>
+        <% end %>  &nbsp&nbsp&nbsp&nbsp
+        <%= link_to like_article_path(@article, like: false), method: :post do %>
+            <i class="glyphicon glyphicon-thumbs-down"></i>  &nbsp <%= @article.thumbs_down_total %>
+        <% end %>
+    </div>
     <% if @article.categories.any? %>
         <p>Categories: <%= render @article.categories %></p>
     <% end %>
