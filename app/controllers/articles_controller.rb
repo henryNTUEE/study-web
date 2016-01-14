@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
     end
     def like
         @article = Article.find(params[:id])
-        like_hold = Like.create(like: params[:like],user: User.last, article: @article)
+        like_hold = Like.create(like: params[:like],user: current_user, article: @article)
         if like_hold.valid?
             flash[:success] = "Your selection was successful"
             redirect_to :back
@@ -67,7 +67,7 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
     end
     def article_params
-        params.require(:article).permit(:title, :description, category_ids: [])
+        params.require(:article).permit(:title, :description, :picture, category_ids: [])
     end
     def require_same_user
        if current_user != @article.user and !current_user.admin?

@@ -7,6 +7,9 @@
                 </div>
                 <div class="article-body">
                     <%= truncate(article.description, length: 30) %>
+                   </br>
+                        <%= image_tag(article.picture.url, size: "250x150", class: "gravatar") if article.picture? %>
+                    
                     <div class="article-meta-details">
                     <small>Created by: <%= article.user.username if article.user %>,<%= time_ago_in_words(article.created_at) %> ago, last updated: <%= time_ago_in_words(article.updated_at) %> ago</small>
                     </div>
@@ -14,6 +17,7 @@
                 <% if article.categories.any? %>
                     <p>Categories: <%= render article.categories %></p>
                 <% end %>
+                
                 <div class="pull-right">
         <%= link_to like_article_path(article, like: true), method: :post do %>
             <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= article.thumbs_up_total %>
