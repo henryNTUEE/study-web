@@ -27,11 +27,16 @@
             <i class="glyphicon glyphicon-thumbs-down"></i>  &nbsp <%= @article.thumbs_down_total %>
         <% end %>
     </div>
+    
     <% if @article.categories.any? %>
         <p>Categories: <%= render @article.categories %></p>
     <% end %>
+    
     <% if @article.comments.any? %>
+    <br>
+    <div class="comment-actions">
     <h4><strong>Comments:</strong></h4>
+    </div>
     <% end %>
     <% @article.comments.each do |comment| %>
       <div>
