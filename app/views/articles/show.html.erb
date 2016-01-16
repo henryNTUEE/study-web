@@ -49,6 +49,7 @@
       </p>
       </div>
     <% end %>
+    <%  if logged_in? %>
     <h4><strong>Add a comment:</strong></h4>
         <%= form_for([@article, @article.comments.build]) do |f| %>
           <div class="col-sm-12">
@@ -56,6 +57,7 @@
           </div>
         <% end %>  
     <br><br>    
+    <% end %>
     <div class="article-actions">
         <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
         <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-xs btn-primary" %> 
