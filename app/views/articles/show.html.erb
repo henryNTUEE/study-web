@@ -30,6 +30,27 @@
     <% if @article.categories.any? %>
         <p>Categories: <%= render @article.categories %></p>
     <% end %>
+    <% if @article.comments.any? %>
+    <h4><strong>Comments:</strong></h4>
+    <% end %>
+    <% @article.comments.each do |comment| %>
+      <div>
+      <p>
+        <b><%= gravatar_for(current_user) %> <%= link_to comment.user.username, user_path(current_user) %>: </b>
+        <%= comment.body %>
+        <% if logged_in? && (current_user == comment.user || current_user.admin?) %>
+        <%= link_to 'x', [comment.article, comment], :confirm => 'Are you sure?', :method => :delete , class:"close" %>
+        <% end %>
+      </p>
+      </div>
+    <% end %>
+    <h4><strong>Add a comment:</strong></h4>
+        <%= form_for([@article, @article.comments.build]) do |f| %>
+          <div class="col-sm-12">
+            <%= f.text_field :body, class:"form-control" ,id:"inputEmail3" ,placeholder:"Comment"%>
+          </div>
+        <% end %>  
+    <br><br>    
     <div class="article-actions">
         <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
         <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-xs btn-primary" %> 

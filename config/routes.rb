@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   resources :categories
   resources :articles do 
+    resources :comments
     member do
       post 'like'
     end

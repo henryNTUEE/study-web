@@ -3,13 +3,14 @@ class Article < ActiveRecord::Base
    has_many :categories, through: :article_categories
    belongs_to :user
    has_many :likes
+   has_many :comments, :dependent => :destroy 
    validates :title, presence:true, length: {minimum: 3, maximum: 50}
    validates :description, presence:true, length: {minimum: 10, maximum: 300}
    validates :user_id, presence: true
    default_scope -> {order(updated_at: :desc)}
    mount_uploader :picture, PictureUploader
    validate :picture_size
-   def self.search(param)
+    def self.search(param)
         return Article.none if param.blank?
         param.strip!
         param.downcase!
