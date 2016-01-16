@@ -41,7 +41,7 @@
     <% @article.comments.each do |comment| %>
       <div>
       <p>
-        <b><%= gravatar_for(current_user) %> <%= link_to comment.user.username, user_path(current_user) %>: </b>
+        <b><%= gravatar_for(comment.user) %> <%= link_to comment.user.username, user_path(comment.user) %>: </b>
         <%= comment.body %>
         <% if logged_in? && (current_user == comment.user || current_user.admin?) %>
         <%= link_to 'x', [comment.article, comment], :confirm => 'Are you sure?', :method => :delete , class:"close" %>
