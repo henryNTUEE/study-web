@@ -1,5 +1,7 @@
+<body class="body">
 <h2 align="center">Title: <%= @article.title %></h2>
 <div class="well col-xs-8 col-xs-offset-2">
+    <div class="comment-body">
     <% if @article.user %>
     <ul class="listing">
                 <div class="row center">
@@ -27,13 +29,12 @@
             <i class="glyphicon glyphicon-thumbs-down"></i>  &nbsp <%= @article.thumbs_down_total %>
         <% end %>
     </div>
-    
+    </div>
     <% if @article.categories.any? %>
         <p>Categories: <%= render @article.categories %></p>
     <% end %>
     
     <% if @article.comments.any? %>
-    <br>
     <div class="comment-actions">
     <h4><strong>Comments:</strong></h4>
     </div>
@@ -66,4 +67,4 @@
         <%= link_to "Back to articles", articles_path, class: "btn btn-xs btn-success" %>
     </div>
 </div>
-
+</body>
