@@ -1,3 +1,4 @@
+<body class="body">
 <h1 align="center"><%= "Category: " + @category.name %></h1>
     <div align="center">
         <% if logged_in? and current_user.admin? %>
@@ -12,3 +13,4 @@
     <div align="center">
     <%= will_paginate @category_articles %>
 </div>
+<body>

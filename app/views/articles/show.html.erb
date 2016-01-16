@@ -1,5 +1,7 @@
+<body class="body">
 <h2 align="center">Title: <%= @article.title %></h2>
 <div class="well col-xs-8 col-xs-offset-2">
+    <div class="comment-body">
     <% if @article.user %>
     <ul class="listing">
                 <div class="row center">
@@ -27,8 +29,35 @@
             <i class="glyphicon glyphicon-thumbs-down"></i>  &nbsp <%= @article.thumbs_down_total %>
         <% end %>
     </div>
+    </div>
     <% if @article.categories.any? %>
         <p>Categories: <%= render @article.categories %></p>
+    <% end %>
+    
+    <% if @article.comments.any? %>
+    <div class="comment-actions">
+    <h4><strong>Comments:</strong></h4>
+    </div>
+    <% end %>
+    <% @article.comments.each do |comment| %>
+      <div>
+      <p>
+        <b><%= gravatar_for(comment.user) %> <%= link_to comment.user.username, user_path(comment.user) %>: </b>
+        <%= comment.body %>
+        <% if logged_in? && (current_user == comment.user || current_user.admin?) %>
+        <%= link_to 'x', [comment.article, comment], :confirm => 'Are you sure?', :method => :delete , class:"close" %>
+        <% end %>
+      </p>
+      </div>
+    <% end %>
+    <%  if logged_in? %>
+    <h4><strong>Add a comment:</strong></h4>
+        <%= form_for([@article, @article.comments.build]) do |f| %>
+          <div class="col-sm-12">
+            <%= f.text_field :body, class:"form-control" ,id:"inputEmail3" ,placeholder:"Comment"%>
+          </div>
+        <% end %>  
+    <br><br>    
     <% end %>
     <div class="article-actions">
         <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
@@ -38,4 +67,4 @@
         <%= link_to "Back to articles", articles_path, class: "btn btn-xs btn-success" %>
     </div>
 </div>
-
+</body>
