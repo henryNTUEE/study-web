@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20160116014110) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
-    t.text     "comment"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
